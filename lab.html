@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Лаборатория — ARTEM</title>
+<meta name="description" content="Эксперименты с анимацией и интерфейсами на чистом CSS, SVG и JavaScript: cyber eye и терминал.">
+<meta name="theme-color" content="#000000">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Лаборатория — ARTEM">
+<meta property="og:description" content="Эксперименты с анимацией и интерфейсами на чистом CSS, SVG и JavaScript: cyber eye и терминал.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23000'/%3E%3Crect x='10' y='10' width='12' height='12' fill='%23fff'/%3E%3C/svg%3E">
+<script>document.documentElement.className="js"</script>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Russo+One&family=JetBrains+Mono:wght@400..800&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Russo+One&family=JetBrains+Mono:wght@400..800&display=swap"></noscript>
+<script src="assets/app.js" defer></script>
+<script type="speculationrules">{"prefetch":[{"where":{"href_matches":"/*"},"eagerness":"moderate"}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">К содержимому</a>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="top" id="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html">ARTEM</a>
+    <button class="burger" id="burger" aria-label="Меню" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+    <nav class="menu" id="menu" aria-label="Разделы сайта">
+      <a href="index.html">Главная</a>
+      <a href="about.html">Обо мне</a>
+      <a href="services.html">Услуги</a>
+      <a href="lab.html" aria-current="page">Лаборатория</a>
+      <a href="contact.html">Контакты</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<div class="page-head"><div class="wrap">
+  <span class="label">03 / лаборатория</span>
+  <h1>Ла<span class="o">ба</span></h1>
+  <p>Эксперименты с анимацией и интерфейсами. Всё живое — трогай.</p>
+</div></div>
+<section class="wrap">
+  <div class="eye-sec">
+    <div class="eye-text rv">
+      <span class="label">эксперимент 01</span>
+      <h2>Cyber eye</h2>
+      <p>Глаз, который следит за курсором. Нарисован на чистом CSS и SVG, без картинок и 3D-библиотек. Тапни, и зрачок дернется от импульса.</p>
+      <ul><li>CSS-градиенты вместо текстур</li><li>взгляд следует за указателем</li><li>импульс и моргание по клику</li><li>0 библиотек, 0 картинок</li></ul>
+      <span class="label">› тапни по глазу</span>
+    </div>
+    <div class="eye-stage rv d1" id="eyeStage" role="button" tabindex="0" aria-label="Cyber eye, нажми для импульса" data-live>
+      <div class="eye-glow"></div>
+      <div class="orb">
+        <svg class="spin" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="92" fill="none" stroke="#fff" stroke-width="1.2" stroke-dasharray="22 10 4 10" opacity=".6"/></svg>
+        <svg class="spin r" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="82" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="60 40 10 40" opacity=".35"/></svg>
+        <svg class="spin s" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="72" fill="none" stroke="#fff" stroke-width="1" stroke-dasharray="2 6" opacity=".6"/></svg>
+        <svg viewBox="0 0 200 200" aria-hidden="true"><path d="M28 100H44M156 100H172M100 28V44M100 156V172" stroke="#fff" stroke-width="2" opacity=".5"/></svg>
+        <div class="socket"><div class="iris" id="iris"><div class="pupil"></div></div></div>
+      </div>
+      <div class="ring"></div>
+    </div>
+  </div>
+</section>
+<section class="wrap" style="padding-top:0">
+  <span class="label rv">эксперимент 02</span>
+  <h2 class="rv" style="margin-top:.8rem">Терминал</h2>
+  <div class="term rv d1"><div class="term-bar" aria-hidden="true"><i></i><i></i><i></i></div><div class="term-body" id="term"><div class="p">$ python whoami.py</div><div>&gt; имя: Артем</div><div>&gt; роль: разработчик сайтов и легких игр</div><div>&gt; стек: Python · C · HTML/CSS</div><div>&gt; статус: новичок. временно.</div><div>&gt; цель: расти быстрее всех вокруг</div><div class="p">$ <span class="cur"></span></div></div></div>
+</section>
+</main>
+
+<footer><div class="wrap label">
+  <span>© 2026 ARTEM</span>
+  <span><a href="index.html">главная</a> · <a href="services.html">услуги</a> · <a href="contact.html">контакты</a></span>
+  <span>новичок — это временно</span>
+</div></footer>
+</body>
+</html>
