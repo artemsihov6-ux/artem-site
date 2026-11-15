@@ -161,6 +161,68 @@ section{padding:clamp(3.5rem,8vw,5.5rem) 0}
 .cta{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.5rem;border:1px solid var(--line);background:var(--surface);padding:clamp(1.5rem,4vw,2.5rem)}
 .cta p{margin:0;font:700 clamp(1.05rem,2.6vw,1.4rem)/1.4 var(--mono);max-width:32ch}
 
+/* ===== услуги: витрина с ценами. Переключение — радиокнопки, работает и без JS ===== */
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.shop{position:relative;padding:clamp(1.25rem,5vw,4rem) 0;overflow:hidden;isolation:isolate;border-bottom:1px solid var(--line);color:#fff}
+.sv{position:absolute;opacity:0;pointer-events:none}
+.shop-bg i{position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity .8s ease}
+.shop-bg i:nth-child(1){background:linear-gradient(135deg,#fafafa,#9c9c9c)}
+.shop-bg i:nth-child(2){background:linear-gradient(135deg,#7a7a7a,#262626)}
+.shop-bg i:nth-child(3){background:linear-gradient(135deg,#2a2a2a,#000)}
+.shop-bg::after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(circle,rgba(128,128,128,.4) 1px,transparent 1.5px) 0 0/14px 14px}
+#sv1:checked~.shop-bg i:nth-child(1),#sv2:checked~.shop-bg i:nth-child(2),#sv3:checked~.shop-bg i:nth-child(3){opacity:1}
+.card{border-radius:clamp(18px,3vw,30px);padding:clamp(1rem,2.6vw,1.75rem) clamp(1rem,3vw,2.25rem);
+  background:radial-gradient(55% 65% at 50% 50%,rgba(255,255,255,.14),transparent 72%),#080808;border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 34px 60px -24px rgba(0,0,0,.7)}
+.card .label{color:rgba(255,255,255,.78)}
+.card-top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:1rem}
+.card-top .label:last-child{text-align:right}
+.tabs{display:flex;gap:.15rem;padding:.3rem;border-radius:99px;background:rgba(255,255,255,.08)}
+.tabs label{padding:.62rem 1rem;border-radius:99px;cursor:pointer;white-space:nowrap;font:700 .68rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,.85);transition:background-color .3s,color .3s}
+#sv1:checked~.wrap .tabs [for=sv1],#sv2:checked~.wrap .tabs [for=sv2],#sv3:checked~.wrap .tabs [for=sv3]{background:#fff;color:#000}
+#sv1:focus-visible~.wrap .tabs [for=sv1],#sv2:focus-visible~.wrap .tabs [for=sv2],#sv3:focus-visible~.wrap .tabs [for=sv3]{outline:2px solid #fff;outline-offset:3px}
+.slides{display:grid}
+.slide{grid-area:1/1;display:grid;gap:1rem 1.5rem;align-items:center;min-height:clamp(24rem,42vw,28rem);padding-top:1.25rem;
+  grid-template:"text vis price" 1fr "foot tag next" auto/minmax(0,1.05fr) minmax(0,1fr) minmax(0,.78fr);
+  visibility:hidden;transition:visibility 0s .5s}
+.slide{--a:#111;--b:#9a9a9a}
+.fa{fill:var(--a)}.fb{fill:var(--b)}.sa{stroke:var(--a)}
+.s-text{grid-area:text}.s-price{grid-area:price;text-align:right}.s-foot{grid-area:foot}.s-tag{grid-area:tag}.s-next{grid-area:next}
+.slide>*{opacity:0;transform:translateY(16px);transition:opacity .3s,transform .5s var(--ease)}
+.slide>.vis{grid-area:vis;position:relative;justify-self:center;width:min(100%,24rem);transform:translateX(55%) scale(.55) rotate(14deg);transition:opacity .45s,transform .75s var(--ease)}
+#sv2:checked~.wrap .s1>.vis,#sv3:checked~.wrap .s1>.vis,#sv3:checked~.wrap .s2>.vis{transform:translateX(-55%) scale(.55) rotate(-14deg)}
+:is(#sv1:checked~.wrap .s1,#sv2:checked~.wrap .s2,#sv3:checked~.wrap .s3){visibility:visible;transition-delay:0s}
+:is(#sv1:checked~.wrap .s1,#sv2:checked~.wrap .s2,#sv3:checked~.wrap .s3)>*{opacity:1;transform:none;transition-delay:.18s}
+:is(#sv1:checked~.wrap .s1,#sv2:checked~.wrap .s2,#sv3:checked~.wrap .s3)>.vis{transition-delay:.05s}
+:is(#sv1:checked~.wrap .s1,#sv2:checked~.wrap .s2,#sv3:checked~.wrap .s3)>.s-price{transition-delay:.28s}
+.arrows{display:flex;gap:.45rem;margin-bottom:1.1rem}
+.arrows label{display:grid;place-items:center;width:2.2rem;height:2.2rem;border-radius:50%;cursor:pointer;border:1px solid rgba(255,255,255,.55);
+  font:400 1.1rem/1 var(--mono);padding-bottom:.1em;transition:background-color .2s,color .2s}
+.slide h2{margin:0 0 1rem;font-size:clamp(2rem,4.3vw,3rem);line-height:.98}
+.slide h2 .o{display:block}
+.s-text p{margin:0 0 1.5rem;max-width:40ch;font-size:.95rem;line-height:1.6;color:rgba(255,255,255,.88)}
+.card .btn{border-radius:99px;padding:.85rem 1.3rem}
+.fl{animation:float 6s ease-in-out infinite}
+.vis svg{display:block;width:100%;height:auto;overflow:visible;filter:drop-shadow(0 22px 22px rgba(0,0,0,.32));
+  transform:perspective(900px) rotateY(calc(-12deg + var(--tx,0)*1deg)) rotateX(calc(5deg + var(--ty,0)*1deg));transition:transform .25s ease-out}
+.s2 .vis svg{transform:perspective(900px) rotateY(calc(12deg + var(--tx,0)*1deg)) rotateX(calc(5deg + var(--ty,0)*1deg))}
+.vis::after{content:"";position:absolute;left:18%;right:18%;bottom:-7%;height:9%;border-radius:50%;background:rgba(0,0,0,.4);filter:blur(12px);animation:glow 6s ease-in-out infinite}
+.lp-scroll{animation:lpScroll 9s ease-in-out infinite}
+@keyframes lpScroll{0%,12%{transform:translateY(0)}88%,100%{transform:translateY(-264px)}}
+.bd{animation:float 5s ease-in-out infinite}.bd2{animation-duration:7s;animation-delay:-2s}
+.dot{animation:dot 1.2s infinite}.dot.d2{animation-delay:.2s}.dot.d3{animation-delay:.4s}
+@keyframes dot{0%,60%,100%{opacity:.25}30%{opacity:1}}
+.s-price b{display:block;white-space:nowrap;font:800 clamp(2rem,4.2vw,3.1rem)/1 var(--mono);font-variant-numeric:tabular-nums}
+.s-price .label{display:block;margin-top:.6rem}
+.s-price .ch-t{margin-top:1.75rem}
+.chips{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:.4rem;margin-top:.7rem}
+.chips span{padding:.5rem .75rem;border-radius:99px;border:1px solid rgba(255,255,255,.3);font:700 .7rem/1 var(--mono);white-space:nowrap}
+.s-tag{text-align:center;font-size:.95rem;line-height:1.3}
+.s-next{justify-self:end;display:flex;align-items:center;gap:.8rem;cursor:pointer;text-align:right}
+.s-next b{display:block;margin-top:.35rem;font:700 .8rem/1 var(--mono);white-space:nowrap}
+.s-next svg{width:3rem;height:3rem;filter:drop-shadow(0 8px 8px rgba(0,0,0,.35));transform:perspective(300px) rotateY(-18deg);transition:transform .3s var(--ease)}
+
 /* ===== лаборатория ===== */
 .eye-sec{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
 .eye-text h2{margin:.8rem 0 1rem}
@@ -201,6 +263,20 @@ section{padding:clamp(3.5rem,8vw,5.5rem) 0}
 .term-body .p{color:#fff}
 .cur{display:inline-block;width:.6em;height:1.1em;background:#fff;vertical-align:-.2em;animation:blink 1s steps(1) infinite}
 
+.game{border:1px solid var(--line);background:var(--surface)}
+.game-hud{display:flex;flex-wrap:wrap;gap:.6rem 1.75rem;padding:.9rem 1.25rem;border-bottom:1px solid var(--line)}
+.game-hud b{margin-left:.4em;color:#fff;font-weight:700;font-variant-numeric:tabular-nums}
+.game-field{position:relative;height:clamp(17rem,45vw,24rem);overflow:hidden;touch-action:manipulation;
+  background:radial-gradient(circle,#222 1px,transparent 1.5px) 0 0/18px 18px}
+.px{position:absolute;left:0;top:0;padding:0;border:0;background:#fff;cursor:pointer;box-shadow:0 0 18px rgba(255,255,255,.6);
+  transition:transform .12s var(--ease),width .12s,height .12s;-webkit-tap-highlight-color:transparent}
+.game-msg{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:1.25rem;padding:1.5rem;text-align:center}
+.game-msg p{margin:0;max-width:38ch;color:var(--muted);font:400 .9rem/1.6 var(--mono)}
+.game [hidden]{display:none}
+.game-field.hit{animation:hit .25s}
+@keyframes hit{from{box-shadow:inset 0 0 0 2px #fff}to{box-shadow:inset 0 0 0 2px transparent}}
+html:not(.js) .game-sec{display:none}
+
 /* ===== контакты ===== */
 .cgrid{display:grid;grid-template-columns:repeat(2,1fr);border:1px solid var(--line)}
 .ccard{position:relative;display:flex;flex-direction:column;gap:2.5rem;padding:clamp(1.5rem,4vw,2.5rem);text-decoration:none;border-right:1px solid var(--line);overflow:hidden;isolation:isolate;transition:color .35s}
@@ -225,6 +301,9 @@ footer a{text-decoration:none}
   .tile:hover::before,.ccard:hover::before{transform:none}
   .tile:hover .label,.ccard:hover .label{color:#444}
   .tile:hover .arr{transform:translateX(6px) rotate(-45deg)}
+  .tabs label:hover{color:#fff}
+  .arrows label:hover{background:#fff;color:#000}
+  .s-next:hover svg{transform:perspective(300px) rotateY(0deg) translateX(4px)}
 }
 
 @media (max-width:860px){
@@ -251,6 +330,17 @@ footer a{text-decoration:none}
   .step{border-right:0;border-bottom:1px solid var(--line)}.step:last-child{border-bottom:0}
   .srow{grid-template-columns:2.2rem minmax(0,1fr);gap:.9rem}
   .srow > div{grid-column:2}
+  .card-top{grid-template-columns:1fr}
+  .card-top .label{display:none}
+  .tabs{justify-self:center;max-width:100%}
+  .tabs label{padding:.6rem .7rem;font-size:.62rem;letter-spacing:.04em}
+  .slide{grid-template:"vis vis" auto "text text" auto "price next" auto/minmax(0,1fr) auto;align-items:start;min-height:0;gap:1.25rem 1rem}
+  .slide>.vis{width:min(74%,15rem)}
+  .s-tag,.s-foot{display:none}
+  .s-price{text-align:left}
+  .chips{justify-content:flex-start}
+  .s-next{align-self:end}
+  .fl,.bd,.vis::after{animation:none}
   .eye-stage{max-width:320px;order:-1}
   .cgrid{grid-template-columns:1fr}
   .ccard{border-right:0;border-bottom:1px solid var(--line)}.ccard:last-child{border-bottom:0}
