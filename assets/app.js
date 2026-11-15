@@ -105,6 +105,35 @@
     }, { passive: true });
   }
 
+  /* ---------- услуги: витрина — свайп на телефоне и наклон за мышью ---------- */
+  const shop = $("#shop");
+  if (shop) {
+    const radios = [...shop.querySelectorAll(".sv")];
+    const go = step => {
+      const i = radios.findIndex(r => r.checked);
+      radios[(i + step + radios.length) % radios.length].checked = true;
+    };
+    let sx = 0, sy = 0;
+    shop.addEventListener("touchstart", e => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+    shop.addEventListener("touchend", e => {
+      const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
+      if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.5) go(dx < 0 ? 1 : -1);
+    }, { passive: true });
+    if (fine && !reduce && !small) {
+      let r = 0, x = 0, y = 0;
+      shop.addEventListener("pointermove", e => {
+        x = e.clientX; y = e.clientY;
+        if (r) return;
+        r = requestAnimationFrame(() => {
+          r = 0;
+          const b = shop.getBoundingClientRect();
+          shop.style.setProperty("--tx", (((x - b.left) / b.width - .5) * 16).toFixed(1));
+          shop.style.setProperty("--ty", (((y - b.top) / b.height - .5) * -10).toFixed(1));
+        });
+      }, { passive: true });
+    }
+  }
+
   /* ---------- лаборатория: глаз ---------- */
   const stage = $("#eyeStage");
   if (stage) {
@@ -140,6 +169,46 @@
         stage.classList.add("blink"); setTimeout(() => stage.classList.remove("blink"), 240);
       }, 4200);
     }, () => { active = false; clearInterval(blinkT); });
+  }
+
+  /* ---------- лаборатория: игра «Поймай пиксель» ---------- */
+  const field = $("#gField");
+  if (field) {
+    const px = $("#gPx"), msg = $("#gMsg"), start = $("#gStart"), text = msg.querySelector("p");
+    const elT = $("#gTime"), elS = $("#gScore"), elB = $("#gBest");
+    const DUR = 15000, KEY = "artem-px-best";
+    let score = 0, best = 0, end = 0, raf = 0, on = false;
+    try { best = +localStorage.getItem(KEY) || 0; } catch (e) {}
+    elB.textContent = best;
+    const place = () => {
+      const size = Math.max(22, 56 - score * 2);                       // чем больше счет, тем меньше пиксель
+      px.style.width = px.style.height = size + "px";
+      px.style.transform = `translate(${Math.random() * (field.clientWidth - size)}px,${Math.random() * (field.clientHeight - size)}px)`;
+    };
+    const stop = () => {
+      on = false; px.hidden = true; elT.textContent = "0.0";
+      const rec = score > best;
+      if (rec) { best = score; elB.textContent = best; try { localStorage.setItem(KEY, best); } catch (e) {} }
+      text.textContent = rec ? `Новый рекорд: ${score}. Попробуй побить.` : `Результат: ${score}. Рекорд: ${best}.`;
+      start.textContent = "Еще раз"; msg.hidden = false; start.focus({ preventScroll: true });
+    };
+    const tick = () => {
+      const left = end - performance.now();
+      if (left <= 0) return stop();
+      elT.textContent = (left / 1000).toFixed(1);
+      raf = requestAnimationFrame(tick);
+    };
+    const hit = () => {
+      if (!on) return;
+      elS.textContent = ++score; place();
+      field.classList.remove("hit"); void field.offsetWidth; field.classList.add("hit");
+    };
+    start.addEventListener("click", () => {
+      score = 0; elS.textContent = "0"; msg.hidden = true; px.hidden = false; on = true;
+      place(); end = performance.now() + DUR; cancelAnimationFrame(raf); raf = requestAnimationFrame(tick);
+    });
+    px.addEventListener("pointerdown", e => { e.preventDefault(); hit(); });
+    px.addEventListener("click", e => { if (e.detail === 0) hit(); });   // Enter и пробел с клавиатуры
   }
 
   /* ---------- лаборатория: терминал печатает текст, который уже есть в HTML ---------- */

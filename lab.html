@@ -41,7 +41,7 @@
 <div class="page-head"><div class="wrap">
   <span class="label">03 / лаборатория</span>
   <h1>Ла<span class="o">ба</span></h1>
-  <p>Эксперименты с анимацией и интерфейсами. Всё живое — трогай.</p>
+  <p>Эксперименты с анимацией, интерфейсами и мини-играми. Всё живое — трогай.</p>
 </div></div>
 <section class="wrap">
   <div class="eye-sec">
@@ -69,6 +69,17 @@
   <span class="label rv">эксперимент 02</span>
   <h2 class="rv" style="margin-top:.8rem">Терминал</h2>
   <div class="term rv d1"><div class="term-bar" aria-hidden="true"><i></i><i></i><i></i></div><div class="term-body" id="term"><div class="p">$ python whoami.py</div><div>&gt; имя: Артем</div><div>&gt; роль: разработчик сайтов и легких игр</div><div>&gt; стек: Python · C · HTML/CSS</div><div>&gt; статус: новичок. временно.</div><div>&gt; цель: расти быстрее всех вокруг</div><div class="p">$ <span class="cur"></span></div></div></div>
+</section>
+<section class="wrap game-sec" style="padding-top:0">
+  <span class="label rv">эксперимент 03</span>
+  <h2 class="rv" style="margin-top:.8rem">Поймай пиксель</h2>
+  <div class="game rv d1">
+    <div class="game-hud label"><span>время <b id="gTime">15.0</b></span><span>счет <b id="gScore">0</b></span><span>рекорд <b id="gBest">0</b></span></div>
+    <div class="game-field" id="gField">
+      <button class="px" id="gPx" type="button" aria-label="Пиксель" hidden></button>
+      <div class="game-msg" id="gMsg"><p>Пиксель убегает после каждого попадания и становится меньше. Сколько поймаешь за 15 секунд?</p><button class="btn solid" id="gStart" type="button">Старт</button></div>
+    </div>
+  </div>
 </section>
 </main>
 
