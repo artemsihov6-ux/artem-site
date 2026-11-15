@@ -223,12 +223,36 @@ section{padding:clamp(3.5rem,8vw,5.5rem) 0}
 .s-next b{display:block;margin-top:.35rem;font:700 .8rem/1 var(--mono);white-space:nowrap}
 .s-next svg{width:3rem;height:3rem;filter:drop-shadow(0 8px 8px rgba(0,0,0,.35));transform:perspective(300px) rotateY(-18deg);transition:transform .3s var(--ease)}
 
+/* ===== услуги: пример работы — демо бота записи ===== */
+.demo{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+#demo{scroll-margin-top:62px}
+.demo-text .tags{margin-bottom:1.6rem}
+.s-btns{display:flex;flex-wrap:wrap;gap:.6rem}
+.chat-wrap{justify-self:center;width:100%;max-width:400px;display:grid;gap:.9rem;justify-items:center;text-align:center}
+.chat{width:100%;display:flex;flex-direction:column;border:1px solid var(--line);border-radius:18px;background:var(--surface);overflow:hidden;text-align:left;filter:grayscale(1)}
+.chat-top{display:flex;align-items:center;gap:.75rem;padding:.8rem 1rem;border-bottom:1px solid var(--line)}
+.chat-ava{display:grid;place-items:center;flex:none;width:2.3rem;height:2.3rem;border-radius:50%;background:#fff;color:#000;font:400 1rem/1 var(--disp)}
+.chat-top b{display:block;font:700 .85rem/1.2 var(--mono)}
+.chat-top .label{display:block;margin-top:.3rem}
+.chat-log{height:22rem;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;padding:1rem;display:flex;flex-direction:column;gap:.5rem}
+.msg{align-self:flex-start;max-width:88%;padding:.6rem .8rem;border-radius:14px 14px 14px 4px;background:#1a1a1a;font-size:.88rem;line-height:1.45;white-space:pre-line;overflow-wrap:anywhere;animation:fadeUp .3s var(--ease) both}
+.msg.me{align-self:flex-end;border-radius:14px 14px 4px 14px;background:#fff;color:#000}
+.ikb{align-self:flex-start;width:88%;display:grid;grid-template-columns:repeat(var(--c,1),minmax(0,1fr));gap:.3rem}
+.chat-kb{display:grid;grid-template-columns:1fr 1fr;gap:.35rem;padding:.6rem;border-top:1px solid var(--line)}
+.chat-kb:empty,.ikb[hidden]{display:none}
+.ikb button,.chat-kb button{padding:.6rem .4rem;border:1px solid #3a3a3a;border-radius:8px;background:transparent;color:#fff;font:400 .8rem/1.2 var(--sans);cursor:pointer;transition:background-color .2s,color .2s}
+.chat-kb button{background:#161616;border-color:var(--line)}
+.ikb .wide,.chat-kb .wide{grid-column:1/-1}
+.chat-in{display:flex;gap:.4rem;padding:.6rem;border-top:1px solid var(--line)}
+.chat-in input{flex:1;min-width:0;padding:.6rem .9rem;border:1px solid var(--line);border-radius:99px;background:#000;color:#fff;font:400 1rem/1.2 var(--sans)}
+.chat-in button{flex:none;width:2.6rem;height:2.6rem;padding:0 0 .1em;border:0;border-radius:50%;background:#fff;color:#000;font:700 1.2rem/1 var(--mono);cursor:pointer}
+
 /* ===== лаборатория ===== */
 .eye-sec{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
-.eye-text h2{margin:.8rem 0 1rem}
-.eye-text p{color:var(--muted);max-width:46ch;margin:0 0 1.4rem}
-.eye-text ul{list-style:none;margin:0 0 1.6rem;padding:0;font:400 .85rem/2 var(--mono)}
-.eye-text li::before{content:"— ";color:var(--muted)}
+.eye-text h2,.demo-text h2{margin:.8rem 0 1rem}
+.eye-text p,.demo-text p{color:var(--muted);max-width:46ch;margin:0 0 1.4rem}
+.eye-text ul,.demo-text ul{list-style:none;margin:0 0 1.6rem;padding:0;font:400 .85rem/2 var(--mono)}
+.eye-text li::before,.demo-text li::before{content:"— ";color:var(--muted)}
 .eye-stage{position:relative;display:grid;place-items:center;aspect-ratio:1;max-width:440px;width:100%;justify-self:center;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .eye-glow{position:absolute;inset:6%;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.18),transparent 65%);animation:glow 3s ease-in-out infinite}
 @keyframes glow{50%{transform:scale(1.08);opacity:.5}}
@@ -303,6 +327,7 @@ footer a{text-decoration:none}
   .tile:hover .arr{transform:translateX(6px) rotate(-45deg)}
   .tabs label:hover{color:#fff}
   .arrows label:hover{background:#fff;color:#000}
+  .ikb button:hover,.chat-kb button:hover{background:#fff;color:#000}
   .s-next:hover svg{transform:perspective(300px) rotateY(0deg) translateX(4px)}
 }
 
@@ -325,7 +350,7 @@ footer a{text-decoration:none}
   .tile:nth-child(2n){border-right:0}
   .tile:nth-last-child(-n+2){border-bottom:0}
   .tile h2{font-size:clamp(1.1rem,5.6vw,1.7rem)}
-  .feature,.about,.eye-sec{grid-template-columns:1fr;gap:2.25rem}
+  .feature,.about,.eye-sec,.demo{grid-template-columns:1fr;gap:2.25rem}
   .steps{grid-template-columns:1fr}
   .step{border-right:0;border-bottom:1px solid var(--line)}.step:last-child{border-bottom:0}
   .srow{grid-template-columns:2.2rem minmax(0,1fr);gap:.9rem}

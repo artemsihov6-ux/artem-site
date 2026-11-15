@@ -135,7 +135,7 @@
             <div class="arrows" aria-hidden="true"><label for="sv2">‹</label><label for="sv1">›</label></div>
             <h2>Бот <span class="o">TG / MAX</span></h2>
             <p>Бот на Python для Telegram или MAX: команды, кнопки, меню и ответы на сообщения. Работает круглые сутки, пока ты занят своими делами.</p>
-            <a class="btn solid" href="contact.html">Заказать <span aria-hidden="true">›</span></a>
+            <div class="s-btns"><a class="btn solid" href="contact.html">Заказать <span aria-hidden="true">›</span></a><a class="btn" href="#demo">Пример</a></div>
           </div>
           <div class="vis" aria-hidden="true"><div class="fl">
             <svg viewBox="0 0 320 280" focusable="false">
@@ -173,7 +173,31 @@
     </div>
   </div>
 </div>
-<section class="wrap">
+<section class="wrap" id="demo">
+  <div class="demo">
+    <div class="demo-text rv">
+      <span class="label">пример работы</span>
+      <h2>Бот записи</h2>
+      <p>Telegram-бот онлайн-записи для барбершопа, салона или любого мастера. Рядом живое демо: тот же сценарий и те же сообщения, что у настоящего бота. Попробуй записаться.</p>
+      <ul><li>запись в пару нажатий: услуга, день, время</li><li>показывает только свободные окна</li><li>напоминание за 2 часа до визита</li><li>админка мастера: все записи и отмена</li></ul>
+      <div class="tags"><span>Python</span><span>aiogram 3</span><span>SQLite</span></div>
+      <div class="s-btns"><a class="btn solid" href="https://github.com/artemsihov6-ux/barber-booking-bot" target="_blank" rel="noopener">Код на GitHub</a><a class="btn" href="contact.html">Хочу такого</a></div>
+    </div>
+    <div class="chat-wrap rv d1">
+      <div class="chat" id="chat">
+        <div class="chat-top"><span class="chat-ava" aria-hidden="true">Б</span><span><b>BarberShop «Борода»</b><span class="label">бот · демо</span></span></div>
+        <div class="chat-log" id="chatLog" role="log" aria-live="polite" aria-label="Переписка с ботом" tabindex="0"><div class="msg">Привет! 👋
+Я бот записи в <b>BarberShop «Борода»</b>.
+
+Запишитесь в пару нажатий, а я напомню о визите заранее.</div><noscript><div class="msg">Демо работает только с включенным JavaScript.</div></noscript></div>
+        <div class="chat-kb" id="chatKb"></div>
+        <form class="chat-in" id="chatForm"><input id="chatInput" type="text" placeholder="Сообщение" autocomplete="off" maxlength="60" aria-label="Сообщение боту"><button type="submit" aria-label="Отправить">›</button></form>
+      </div>
+      <span class="label">демо в браузере · данные никуда не отправляются</span>
+    </div>
+  </div>
+</section>
+<section class="wrap" style="padding-top:0">
   <div class="label rv" style="margin-bottom:1.25rem">все направления</div>
   <ul class="slist">
     <li class="srow rv"><span class="n">01</span><h2>Сайты</h2><div><p>Сайт-визитка, портфолио или страница для заведения. Удобно с телефона, быстро грузится, чистый HTML/CSS и JavaScript без тяжелых библиотек.</p><div class="tags"><span>HTML/CSS</span><span>JavaScript</span><span>адаптив</span></div></div></li>
