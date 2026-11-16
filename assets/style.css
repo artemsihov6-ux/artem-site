@@ -312,6 +312,31 @@ html:not(.js) .game-sec{display:none}
   font:700 .8rem/1 var(--mono);padding:.9rem 1.2rem;z-index:120;transition:transform .35s var(--ease),visibility 0s .35s}
 .toast.on{transform:translate(-50%,0);visibility:visible;transition-delay:0s}
 
+/* ===== отзывы ===== */
+.revs{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+.rev-empty{grid-column:1/-1;margin:0;padding:clamp(1.5rem,4vw,2.5rem);border:1px dashed var(--line);color:var(--muted);font:400 .9rem/1.6 var(--mono)}
+.rev{display:flex;flex-direction:column;gap:1rem;margin:0;padding:clamp(1.25rem,3vw,1.75rem);border:1px solid var(--line);background:var(--surface)}
+.rev-stars{font:400 1rem/1 var(--mono);letter-spacing:.2em;color:#fff}
+.rev-stars i{font-style:normal;color:#3a3a3a}
+.rev blockquote{margin:0;white-space:pre-line;overflow-wrap:anywhere}
+.rev figcaption{margin-top:auto}
+.rev figcaption b{color:#fff;font-weight:700}
+.rev-form-sec{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.rev-form{display:grid;gap:1.25rem;padding:clamp(1.25rem,3vw,2rem);border:1px solid var(--line);background:var(--surface)}
+.fld{display:grid;gap:.55rem}
+.fld .label{display:flex;justify-content:space-between;gap:1rem}
+.fld input,.fld select,.fld textarea{width:100%;padding:.8rem .9rem;border:1px solid var(--line);border-radius:3px;background:#000;color:#fff;font:400 1rem/1.5 var(--sans)}
+.fld textarea{resize:vertical;min-height:8rem}
+.fld input:focus-visible,.fld select:focus-visible,.fld textarea:focus-visible{outline-offset:0;border-color:#fff}
+.stars{display:flex;flex-direction:row-reverse;justify-content:flex-end;gap:.35rem;margin:0;padding:0;border:0;position:relative;padding-top:1.5rem}
+.stars legend{position:absolute;left:0;top:0;padding:0}
+.stars input{position:absolute;opacity:0;pointer-events:none}
+.stars label{width:2.4rem;height:2.4rem;display:grid;place-items:center;border:1px solid var(--line);cursor:pointer;transition:background-color .15s,color .15s;color:#3a3a3a}
+.stars label::before{content:"★";font-size:1.2rem;line-height:1}
+.stars input:checked~label{background:#fff;color:#000;border-color:#fff}
+.stars input:focus-visible+label{outline:2px solid #fff;outline-offset:3px}
+.rev-form .btn{justify-self:start}
+
 footer{border-top:1px solid var(--line);padding:2rem 0 calc(2.5rem + env(safe-area-inset-bottom,0px))}
 footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 footer a{text-decoration:none}
@@ -328,6 +353,8 @@ footer a{text-decoration:none}
   .tabs label:hover{color:#fff}
   .arrows label:hover{background:#fff;color:#000}
   .ikb button:hover,.chat-kb button:hover{background:#fff;color:#000}
+  .stars label:hover,.stars label:hover~label{color:#fff;border-color:#fff}
+  .stars input:checked~label:hover,.stars input:checked~label:hover~label{color:#000}
   .s-next:hover svg{transform:perspective(300px) rotateY(0deg) translateX(4px)}
 }
 
@@ -350,7 +377,8 @@ footer a{text-decoration:none}
   .tile:nth-child(2n){border-right:0}
   .tile:nth-last-child(-n+2){border-bottom:0}
   .tile h2{font-size:clamp(1.1rem,5.6vw,1.7rem)}
-  .feature,.about,.eye-sec,.demo{grid-template-columns:1fr;gap:2.25rem}
+  .feature,.about,.eye-sec,.demo,.rev-form-sec{grid-template-columns:1fr;gap:2.25rem}
+  .revs{grid-template-columns:1fr}
   .steps{grid-template-columns:1fr}
   .step{border-right:0;border-bottom:1px solid var(--line)}.step:last-child{border-bottom:0}
   .srow{grid-template-columns:2.2rem minmax(0,1fr);gap:.9rem}
